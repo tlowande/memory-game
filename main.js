@@ -34,3 +34,18 @@ for (let [index, pic] of gameGrid.entries()) {
   // card.style.backgroundImage = `url(${cardsArray[index].img})`
   grid.appendChild(card)
 }
+
+let count = 0
+
+grid.addEventListener('click', (event) => {
+  let clicked = event.target;
+  if (clicked.nodeName === 'SECTION') {
+    return
+  }
+  if (count < 2) {
+    console.log(count)
+    clicked.classList.add('selected');
+    count++
+    console.log(count)
+  }
+})
