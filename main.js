@@ -35,17 +35,43 @@ for (let [index, pic] of gameGrid.entries()) {
   grid.appendChild(card)
 }
 
-let count = 0
+let firstGuess = ''
+let secondGuess = ''
 
+let count = 0
+let previousTarget = null
+
+let match = () => {
+  //makes an array with all the elements that have the class described on the parentesis
+  let selected = document.querySelectorAll('.selected')
+
+  //loops over this array of two elements and adds the class match so they are not available anymore
+  for (let element of selected) {
+    element.classList.add('match')
+  }
+}
 grid.addEventListener('click', (event) => {
   let clicked = event.target;
-  if (clicked.nodeName === 'SECTION') {
+  if (clicked.nodeName === 'SECTION' || clicked === previousTarget || clicked.parentNode.classList.contains('match') || clicked.parentNode.classList.contains('selected')) {
     return
   }
   if (count < 2) {
-    console.log(count)
-    clicked.classList.add('selected');
+    // clicked.classList.add('selected'); 
     count++
-    console.log(count)
+    if (count === 1) {
+      firstGuess = clicked.dataset.name
+      clicked.classList.add('selected')
+    } else {
+      secondGuess = clicked.dataset.name
+      clicked.classList.add('selected')
+    }
+
+    if (firstGuess !== "" && secondGuess !== "") {
+      if (firstGuess === secondGuess) {
+        match()
+      }
+    }
+
+    previousTarget = clicked
   }
 })
