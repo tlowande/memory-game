@@ -50,6 +50,21 @@ let match = () => {
     element.classList.add('match')
   }
 }
+
+const resetGuesses = () => {
+  firstGuess = '';
+  secondGuess = '';
+  count = 0;
+  previousTarget = null;
+
+  let selected = document.querySelectorAll('.selected')
+
+  for (let card of selected) {
+    card.classList.remove('selected');
+  }
+}
+
+
 grid.addEventListener('click', (event) => {
   let clicked = event.target;
   if (clicked.nodeName === 'SECTION' || clicked === previousTarget || clicked.parentNode.classList.contains('match') || clicked.parentNode.classList.contains('selected')) {
@@ -70,6 +85,8 @@ grid.addEventListener('click', (event) => {
       if (firstGuess === secondGuess) {
         match()
       }
+      resetGuesses()
+
     }
 
     previousTarget = clicked
