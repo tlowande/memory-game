@@ -9,6 +9,13 @@ body {
   background: #6589f9;
 }
 
+button {
+  padding: 5px;
+  border-radius: 5px;
+  color: #18679f;
+  font-weight: bold;
+}
+
 #winner {
   display: none;
   text-align: center;

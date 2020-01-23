@@ -22,6 +22,7 @@ gameGrid.sort(() => {
 })
 
 //selects HTML div and appends a section that will contain the cards
+const button = document.querySelector('button')
 const winner = document.getElementById('winner');
 const game = document.getElementById('game-board');
 const grid = document.createElement('section')
@@ -130,3 +131,7 @@ grid.addEventListener('click', (event) => {
 })
 
 
+button.addEventListener('click', (event) => {
+  window.location.reload(true)
+  winner.style.display = 'none'
+})
