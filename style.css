@@ -9,6 +9,13 @@ body {
   background: #6589f9;
 }
 
+#winner {
+  display: none;
+  text-align: center;
+  color: #18679f;
+  margin-top: 100px;
+}
+
 .grid {
   max-width: 960px;
   margin: 0 auto;
@@ -35,6 +42,7 @@ body {
 .front {
   position: absolute;
   backface-visibility: hidden;
+  border-radius: 10px;
 }
 
 .front {

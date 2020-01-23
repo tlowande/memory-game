@@ -22,6 +22,7 @@ gameGrid.sort(() => {
 })
 
 //selects HTML div and appends a section that will contain the cards
+const winner = document.getElementById('winner');
 const game = document.getElementById('game-board');
 const grid = document.createElement('section')
 grid.setAttribute('class', 'grid')
@@ -57,6 +58,7 @@ let firstGuess = ''
 let secondGuess = ''
 let count = 0
 let previousTarget = null
+let moves = 0
 
 //function that adds classes to the selected cards
 let match = () => {
@@ -67,6 +69,13 @@ let match = () => {
   for (let element of selected) {
     element.classList.add('match')
   }
+
+  if (document.querySelectorAll('.match').length === 24) {
+    game.style.display = 'none'
+    winner.style.display = 'block'
+    document.querySelector('h4').innerHTML = `It took you ${moves} moves`
+
+  }
 }
 
 // funtion that resets the variables after 2 cards are selected
@@ -75,7 +84,7 @@ const resetGuesses = () => {
   secondGuess = '';
   count = 0;
   previousTarget = null;
-
+  moves++
   let selected = document.querySelectorAll('.selected')
 
   for (let card of selected) {
@@ -107,15 +116,17 @@ grid.addEventListener('click', (event) => {
 
     if (firstGuess !== "" && secondGuess !== "") {
       if (firstGuess === secondGuess) {
-        setTimeout(match, 1000)
+        setTimeout(match, 800)
       }
-      setTimeout(resetGuesses, 1000)
+      setTimeout(resetGuesses, 800)
       // setTimeout(() => {
       //   resetGuesses()
       // }, 500)
 
     }
-
     previousTarget = clicked
   }
+
 })
+
+
